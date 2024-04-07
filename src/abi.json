@@ -90,6 +90,11 @@
                         "name": "owner",
                         "type": "address",
                         "internalType": "address"
+                    },
+                    {
+                        "name": "tokenURI",
+                        "type": "string",
+                        "internalType": "string"
                     }
                 ]
             }
@@ -147,6 +152,11 @@
                         "name": "owner",
                         "type": "address",
                         "internalType": "address"
+                    },
+                    {
+                        "name": "tokenURI",
+                        "type": "string",
+                        "internalType": "string"
                     }
                 ]
             }
@@ -178,6 +188,11 @@
                         "name": "owner",
                         "type": "address",
                         "internalType": "address"
+                    },
+                    {
+                        "name": "tokenURI",
+                        "type": "string",
+                        "internalType": "string"
                     }
                 ]
             }
@@ -203,6 +218,11 @@
                         "name": "owner",
                         "type": "address",
                         "internalType": "address"
+                    },
+                    {
+                        "name": "tokenURI",
+                        "type": "string",
+                        "internalType": "string"
                     }
                 ]
             }
