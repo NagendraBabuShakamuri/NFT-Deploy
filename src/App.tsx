@@ -9,34 +9,36 @@ import DeployContract from "./deployContract";
 const queryClient = new QueryClient()
 
 function App() {
-  const [nftName, setNftName] = useState<string>('');
-  const [nftSymbol, setNftSymbol] = useState<string>('');
+    const [nftName, setNftName] = useState<string>('');
+    const [nftSymbol, setNftSymbol] = useState<string>('');
 
-  return (
-    <WagmiProvider config={config}>
-      <QueryClientProvider client={queryClient}>
-        <ConnectWallet />
-        <div>
-          <input
-            type="text"
-            value={nftName}
-            onChange={(e) => setNftName(e.target.value)}
-            placeholder="NFT Collection Name"
-          />
-          <input
-            type="text"
-            value={nftSymbol}
-            onChange={(e) => setNftSymbol(e.target.value)}
-            placeholder="NFT Symbol"
-          />
-        </div>
-        <DeployContract
-          contractArg1={nftName} 
-          contractArg2={nftSymbol}
-        />
-      </QueryClientProvider> 
-    </WagmiProvider>
-  );
+    return (
+        <WagmiProvider config={config}>
+            <QueryClientProvider client={queryClient}>
+                <section className="min-h-screen bg-stone-900">
+                    <ConnectWallet />
+                    <div className="mx-auto">
+                        <input
+                            type="text"
+                            value={nftName}
+                            onChange={(e) => setNftName(e.target.value)}
+                            placeholder="NFT Collection Name"
+                        />
+                        <input
+                            type="text"
+                            value={nftSymbol}
+                            onChange={(e) => setNftSymbol(e.target.value)}
+                            placeholder="NFT Symbol"
+                        />
+                    </div>
+                </section>
+                <DeployContract
+                    contractArg1={nftName}
+                    contractArg2={nftSymbol}
+                />
+            </QueryClientProvider>
+        </WagmiProvider>
+    );
 }
 
 

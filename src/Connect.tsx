@@ -1,46 +1,41 @@
 import * as React from 'react';
 import { Connector, useChainId, useConnect } from 'wagmi';
+import { Button } from "./components/ui/button"
 
 export function Connect() {
-  const chainId = useChainId();
-  const { connectors, connect } = useConnect();
+    const chainId = useChainId();
+    const { connectors, connect } = useConnect();
 
-  return (
-    <div className="buttons">
-      {connectors.map((connector) => (
-        <ConnectorButton
-          key={connector.uid}
-          connector={connector}
-          onClick={() => connect({ connector, chainId })}
-        />
-      ))}
-    </div>
-  );
+    return (
+        <div className="buttons">
+            {connectors.map((connector) => {
+                return (
+                <ConnectorButton
+                    key={connector.uid}
+                    connector={connector}
+                    onClick={() => connect({ connector, chainId })}
+                />
+            )})}
+        </div>
+    );
 }
 
 function ConnectorButton({
-  connector,
-  onClick,
+    connector,
+    onClick,
 }: {
-  connector: Connector;
-  onClick: () => void;
+    connector: Connector;
+    onClick: () => void;
 }) {
-  const [ready, setReady] = React.useState(false);
-  React.useEffect(() => {
-    (async () => {
-      const provider = await connector.getProvider();
-      setReady(!!provider);
-    })();
-  }, [connector, setReady]);
+    const [ready, setReady] = React.useState(false);
+    React.useEffect(() => {
+        (async () => {
+            const provider = await connector.getProvider();
+            setReady(!!provider);
+        })();
+    }, [connector, setReady]);
 
-  return (
-    <button
-      className="button"
-      disabled={!ready}
-      onClick={onClick}
-      type="button"
-    >
-      {connector.name}
-    </button>
-  );
+    return (
+        <Button className="mx-2" variant="outline" disabled={!ready} onClick={onClick}>{connector.name === 'Injected' ? 'Already existing wallet' : connector.name}</Button>
+    );
 }
