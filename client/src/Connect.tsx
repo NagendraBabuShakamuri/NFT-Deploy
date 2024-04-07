@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Connector, useChainId, useConnect } from 'wagmi';
+
 import { Button } from "./components/ui/button"
 
 export function Connect() {
@@ -36,6 +37,6 @@ function ConnectorButton({
     }, [connector, setReady]);
 
     return (
-        <Button className="mx-2" variant="outline" disabled={!ready} onClick={onClick}>{connector.name === 'Injected' ? 'Already existing wallet' : connector.name}</Button>
+        <Button className="mx-2 text-black" variant="outline" disabled={!ready} onClick={onClick}>{connector.name === 'Injected' ? 'Already existing wallet' : connector.name}</Button>
     );
 }

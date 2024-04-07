@@ -1,5 +1,7 @@
 import { useAccount, useDisconnect, useEnsAvatar, useEnsName } from 'wagmi';
 
+import { Button } from "./components/ui/button"
+
 export function Account() {
   const { address, connector } = useAccount();
   const { disconnect } = useDisconnect();
@@ -27,9 +29,9 @@ export function Account() {
           </div>
         </div>
       </div>
-      <button className="button" onClick={() => disconnect()} type="button">
-        Disconnect
-      </button>
+      <Button variant="destructive" onClick={() => disconnect()}>
+        Disconnect wallet
+      </Button>
     </div>
   );
 }
