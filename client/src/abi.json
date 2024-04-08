@@ -54,47 +54,59 @@
     },
     {
         "type": "function",
+        "name": "createCollection",
+        "inputs": [
+            {
+                "name": "name",
+                "type": "string",
+                "internalType": "string"
+            }
+        ],
+        "outputs": [],
+        "stateMutability": "nonpayable"
+    },
+    {
+        "type": "function",
         "name": "createToken",
         "inputs": [
+            {
+                "name": "collectionId",
+                "type": "uint256",
+                "internalType": "uint256"
+            },
             {
                 "name": "tokenURI",
                 "type": "string",
                 "internalType": "string"
             }
         ],
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
-            }
-        ],
+        "outputs": [],
         "stateMutability": "nonpayable"
     },
     {
         "type": "function",
-        "name": "getAllNFTs",
+        "name": "getAllCollections",
         "inputs": [],
         "outputs": [
             {
                 "name": "",
                 "type": "tuple[]",
-                "internalType": "struct NFTMarketplace.ListedToken[]",
+                "internalType": "struct NFTCollections.Collection[]",
                 "components": [
                     {
-                        "name": "tokenId",
+                        "name": "id",
                         "type": "uint256",
                         "internalType": "uint256"
+                    },
+                    {
+                        "name": "name",
+                        "type": "string",
+                        "internalType": "string"
                     },
                     {
                         "name": "owner",
                         "type": "address",
                         "internalType": "address"
-                    },
-                    {
-                        "name": "tokenURI",
-                        "type": "string",
-                        "internalType": "string"
                     }
                 ]
             }
@@ -122,92 +134,49 @@
     },
     {
         "type": "function",
-        "name": "getCurrentToken",
-        "inputs": [],
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256",
-                "internalType": "uint256"
-            }
-        ],
-        "stateMutability": "view"
-    },
-    {
-        "type": "function",
-        "name": "getLatestIdtoListedToken",
-        "inputs": [],
-        "outputs": [
-            {
-                "name": "",
-                "type": "tuple",
-                "internalType": "struct NFTMarketplace.ListedToken",
-                "components": [
-                    {
-                        "name": "tokenId",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                    },
-                    {
-                        "name": "owner",
-                        "type": "address",
-                        "internalType": "address"
-                    },
-                    {
-                        "name": "tokenURI",
-                        "type": "string",
-                        "internalType": "string"
-                    }
-                ]
-            }
-        ],
-        "stateMutability": "view"
-    },
-    {
-        "type": "function",
-        "name": "getListedForTokenId",
-        "inputs": [
-            {
-                "name": "tokenId",
-                "type": "uint256",
-                "internalType": "uint256"
-            }
-        ],
-        "outputs": [
-            {
-                "name": "",
-                "type": "tuple",
-                "internalType": "struct NFTMarketplace.ListedToken",
-                "components": [
-                    {
-                        "name": "tokenId",
-                        "type": "uint256",
-                        "internalType": "uint256"
-                    },
-                    {
-                        "name": "owner",
-                        "type": "address",
-                        "internalType": "address"
-                    },
-                    {
-                        "name": "tokenURI",
-                        "type": "string",
-                        "internalType": "string"
-                    }
-                ]
-            }
-        ],
-        "stateMutability": "view"
-    },
-    {
-        "type": "function",
-        "name": "getMyNFTs",
+        "name": "getMyCollections",
         "inputs": [],
         "outputs": [
             {
                 "name": "",
                 "type": "tuple[]",
-                "internalType": "struct NFTMarketplace.ListedToken[]",
+                "internalType": "struct NFTCollections.Collection[]",
+                "components": [
+                    {
+                        "name": "id",
+                        "type": "uint256",
+                        "internalType": "uint256"
+                    },
+                    {
+                        "name": "name",
+                        "type": "string",
+                        "internalType": "string"
+                    },
+                    {
+                        "name": "owner",
+                        "type": "address",
+                        "internalType": "address"
+                    }
+                ]
+            }
+        ],
+        "stateMutability": "view"
+    },
+    {
+        "type": "function",
+        "name": "getTokensInCollection",
+        "inputs": [
+            {
+                "name": "collectionId",
+                "type": "uint256",
+                "internalType": "uint256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "",
+                "type": "tuple[]",
+                "internalType": "struct NFTCollections.ListedToken[]",
                 "components": [
                     {
                         "name": "tokenId",
@@ -215,14 +184,14 @@
                         "internalType": "uint256"
                     },
                     {
+                        "name": "collectionId",
+                        "type": "uint256",
+                        "internalType": "uint256"
+                    },
+                    {
                         "name": "owner",
                         "type": "address",
                         "internalType": "address"
-                    },
-                    {
-                        "name": "tokenURI",
-                        "type": "string",
-                        "internalType": "string"
                     }
                 ]
             }
@@ -499,6 +468,31 @@
     },
     {
         "type": "event",
+        "name": "CollectionCreated",
+        "inputs": [
+            {
+                "name": "collectionId",
+                "type": "uint256",
+                "indexed": true,
+                "internalType": "uint256"
+            },
+            {
+                "name": "name",
+                "type": "string",
+                "indexed": false,
+                "internalType": "string"
+            },
+            {
+                "name": "owner",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "type": "event",
         "name": "MetadataUpdate",
         "inputs": [
             {
@@ -506,6 +500,37 @@
                 "type": "uint256",
                 "indexed": false,
                 "internalType": "uint256"
+            }
+        ],
+        "anonymous": false
+    },
+    {
+        "type": "event",
+        "name": "TokenCreated",
+        "inputs": [
+            {
+                "name": "tokenId",
+                "type": "uint256",
+                "indexed": true,
+                "internalType": "uint256"
+            },
+            {
+                "name": "collectionId",
+                "type": "uint256",
+                "indexed": true,
+                "internalType": "uint256"
+            },
+            {
+                "name": "owner",
+                "type": "address",
+                "indexed": true,
+                "internalType": "address"
+            },
+            {
+                "name": "tokenURI",
+                "type": "string",
+                "indexed": false,
+                "internalType": "string"
             }
         ],
         "anonymous": false

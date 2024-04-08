@@ -3,20 +3,26 @@ import { Connector, useChainId, useConnect } from 'wagmi';
 
 import { Button } from "./components/ui/button"
 
-export function Connect() {
+interface ConnectProps {
+    status: boolean;
+}
+
+export function Connect({ status }: ConnectProps) {
     const chainId = useChainId();
     const { connectors, connect } = useConnect();
 
     return (
-        <div className="buttons">
+        <div className="flex gap-5">
             {connectors.map((connector) => {
                 return (
-                <ConnectorButton
-                    key={connector.uid}
-                    connector={connector}
-                    onClick={() => connect({ connector, chainId })}
-                />
-            )})}
+                    <ConnectorButton
+                        key={connector.uid}
+                        connector={connector}
+                        onClick={() => connect({ connector, chainId })}
+                        status={status}
+                    />
+                )
+            })}
         </div>
     );
 }
@@ -24,9 +30,11 @@ export function Connect() {
 function ConnectorButton({
     connector,
     onClick,
+    status
 }: {
     connector: Connector;
     onClick: () => void;
+    status: boolean;
 }) {
     const [ready, setReady] = React.useState(false);
     React.useEffect(() => {
@@ -37,6 +45,17 @@ function ConnectorButton({
     }, [connector, setReady]);
 
     return (
-        <Button className="mx-2 text-black" variant="outline" disabled={!ready} onClick={onClick}>{connector.name === 'Injected' ? 'Already existing wallet' : connector.name}</Button>
+        <Button className="text-black" variant="outline" disabled={!ready} onClick={onClick}>
+            {status ? <Spinner /> : connector.name === 'Injected' ? 'Connect with browser injected wallet' : `Connect with ${connector.name}`}
+        </Button>
     );
+}
+
+function Spinner() {
+    return (
+        <div
+            className="inline-block h-4 w-4 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+            role="status">
+        </div>
+    )
 }
