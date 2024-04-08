@@ -17,9 +17,10 @@ import { useEffect }  from 'react'
 interface EntryTitleProps {
     className?: string;
     title: string;
+    url: string;
 }
 
-export default function({ className, title }: EntryTitleProps) {
+export default function({ className, title, url }: EntryTitleProps) {
     const { address, isConnecting, isConnected } = useAccount();
     const { toast } = useToast();
 
@@ -39,7 +40,8 @@ export default function({ className, title }: EntryTitleProps) {
 
     }, [isConnected])
 
-    return (
+    return <a href={url}><button className={`bg-gray-500 min-h-36 min-w-full rounded-md transition hover:scale-105 ${className}`}>{title}</button></a>
+    /*return (
         <Drawer>
             <DrawerTrigger><button className={`bg-gray-500 min-h-36 min-w-full rounded-md transition hover:scale-105 ${className}`}>{title}</button>
             </DrawerTrigger>
@@ -53,5 +55,5 @@ export default function({ className, title }: EntryTitleProps) {
                 </DrawerFooter>
             </DrawerContent>
         </Drawer>
-    )
+    )*/
 }

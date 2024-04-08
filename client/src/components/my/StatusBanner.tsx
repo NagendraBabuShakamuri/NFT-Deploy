@@ -13,7 +13,7 @@ export default function({ className, status }: StatusBannerProps) {
     const { disconnect } = useDisconnect();
 
     return (
-        <div className={`fixed flex flex-col top-5 left-5 p-3 rounded text-xs opacity-65 hover:opacity-100 ${status ? "bg-green-600" : "bg-stone-700"} ${className}`}>
+        <div className={`fixed flex flex-col top-5 left-5 p-3 rounded text-xs opacity-65 transition hover:opacity-100 ${status ? "bg-green-600" : "bg-stone-700"} ${className}`}>
             <span>Connected to wallet: {status ? "Connected" : "Disconnected"}</span>
             {isConnected ? <button className="p-1 mt-2 rounded-md bg-stone-700" onClick={() => disconnect()}>Disconnect</button> : null}
 
@@ -24,7 +24,7 @@ export default function({ className, status }: StatusBannerProps) {
                             key={connector.id}
                             className="p-1 mt-2 rounded-md bg-stone-800 hover:bg-stone-900"
                             onClick={() => connect({ connector, chainId })}>
-                            {status ? <Spinner /> : connector.name === 'Injected' ? 'Connect with browser injected wallet' : `Connect with ${connector.name}`}
+                            {status ? <Spinner /> : connector.name === 'Injected' ? 'Connect with injected wallet' : `Connect with ${connector.name}`}
                         </button>
                     )
                 })
