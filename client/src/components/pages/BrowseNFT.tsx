@@ -31,6 +31,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "../../components/ui/drawer";
+import AddMoreNFT from "../my/AddMoreNFT";
 
 export default function BrowseNFT() {
   const signer = useEthersSigner();
@@ -82,7 +83,7 @@ export default function BrowseNFT() {
 
   return (
     <section className="min-h-screen bg-stone-900 text-white content-center">
-      <div className="flex flex-col justify-between mx-auto w-9/12 max-h-96">
+      <div className="flex flex-col justify-between mx-auto w-9/12">
         <div className="flex justify-between">
           <p className="my-auto">Browse NFTs</p>
           <Drawer>
@@ -111,27 +112,28 @@ export default function BrowseNFT() {
             <img className="rounded" width={500} src={token?.tokenURI} />
           ))} */}
         </div>
-        <Table className="rounded p-6 bg-stone-800 mt-5">
+        <Table className="rounded p-6 bg-stone-800 mt-5 ">
           <TableCaption>Global NFT collection</TableCaption>
           <TableHeader className="text-white">
-            <TableRow className="hover:bg-stone-800">
+            <TableRow className="hover:bg-stone-800 border-b-stone-700">
               <TableHead className="w-[100px]">ID</TableHead>
               <TableHead>Collection</TableHead>
               <TableHead>Number of NFTs</TableHead>
-              <TableHead>Preview</TableHead>
+              <TableHead>Preview (hover to maximize)</TableHead>
               <TableHead className="text-center">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {nftCollections?.map((nc: any) => {
+            {nftCollections?.map((nc: any, id: number) => {
               return (
-                <TableRow className="hover:bg-stone-800">
+                <TableRow className="hover:bg-stone-800 border-b-stone-700 ">
                   <TableCell className="font-medium">
                     {nc?.collectionId.toString()}
                   </TableCell>
                   <TableCell>
                     <span className="flex gap-4">
                       {nc?.tokens?.slice(0, 1).map((token: any) => (
+                        // eslint-disable-next-line jsx-a11y/alt-text
                         <img
                           className="rounded border"
                           width={120}
@@ -144,6 +146,7 @@ export default function BrowseNFT() {
                   <TableCell>{nc?.tokens.length}</TableCell>
                   <TableCell className="flex gap-5">
                     {nc?.tokens?.slice(0, 3).map((token: any) => (
+                      // eslint-disable-next-line jsx-a11y/alt-text
                       <img
                         className="rounded my-auto hover:scale-[2.1] transition ease-in-out"
                         width={80}
@@ -164,12 +167,33 @@ export default function BrowseNFT() {
                           <DialogTitle>NFTs</DialogTitle>
                           <DialogDescription className="grid grid-cols-3 gap-4">
                             {nc?.tokens?.map((token: any) => (
+                              // eslint-disable-next-line jsx-a11y/alt-text
                               <img
                                 className="rounded "
                                 width={500}
                                 src={token?.tokenURI}
                               />
                             ))}
+                          </DialogDescription>
+                        </DialogHeader>
+                      </DialogContent>
+                    </Dialog>
+                  </TableCell>
+                  <TableCell className="text-center">
+                    <Dialog>
+                      <DialogTrigger>
+                        <Button
+                          variant={"link"}
+                          className="text-white hover:scale-105 transition"
+                        >
+                          Add more
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>Select images</DialogTitle>
+                          <DialogDescription className="">
+                            <AddMoreNFT collectionID={id + 1} />
                           </DialogDescription>
                         </DialogHeader>
                       </DialogContent>
