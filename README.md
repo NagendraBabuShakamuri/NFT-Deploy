@@ -4,8 +4,13 @@
 
 Collaboraters:
 Atharva Kamble ([AtharvaKamble](https://github.com/AtharvaKamble))
+NUID: 002831703
+
 Nagendra Babu Shakamuri ([NagendraBabuShakamuri](https://github.com/NagendraBabuShakamuri))
+NUID: 002771584
+
 Rohit Panicker ([rohitpanicker06](https://github.com/rohitpanicker06))
+NUID: 002791446
 
 ---
 
