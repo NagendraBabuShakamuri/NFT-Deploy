@@ -99,8 +99,11 @@ export default function UploadNFT({
 
       const collectionID = collectionName;
       if (collectionID?.length === 0) return;
+      alert("A collection will be created now, please wait");
       const transaction = await contract.createCollection(collectionID);
       await transaction.wait();
+
+      alert("A collection is created, please refresh");
 
       console.log(transaction);
     } catch (error) {

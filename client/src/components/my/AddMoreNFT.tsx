@@ -33,8 +33,12 @@ export default function AddMoreNFT({
       );
 
       for (const tokenURI of tokenURIs) {
+        alert("NFT is being minted, please wait");
         const transaction = await contract.createToken(collectionId, tokenURI);
         await transaction.wait();
+
+        alert("NFT has been minted, please refresh");
+
         console.log(`NFT Created with tokenURI: ${tokenURI}`);
       }
     } catch (error) {
