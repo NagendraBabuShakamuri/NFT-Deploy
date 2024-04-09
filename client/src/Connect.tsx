@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Connector, useChainId, useConnect } from 'wagmi';
+import { Connector, useChainId, useConnect, useAccount } from 'wagmi';
+import { useToast } from "./components/ui/use-toast"
 
 import { Button } from "./components/ui/button"
 
@@ -10,6 +11,9 @@ interface ConnectProps {
 export function Connect({ status }: ConnectProps) {
     const chainId = useChainId();
     const { connectors, connect } = useConnect();
+    const {address} = useAccount();
+
+    const { toast } = useToast();
 
     return (
         <div className="flex gap-5">
@@ -18,7 +22,15 @@ export function Connect({ status }: ConnectProps) {
                     <ConnectorButton
                         key={connector.uid}
                         connector={connector}
-                        onClick={() => connect({ connector, chainId })}
+                        onClick={() => {
+                            connect({ connector, chainId });
+
+                            toast({
+                                title: `Connected to wallet with address ${address}`,
+                                variant: 'default',
+                                className: 'text-white bg-green-600'
+                            })
+                        }}
                         status={status}
                     />
                 )

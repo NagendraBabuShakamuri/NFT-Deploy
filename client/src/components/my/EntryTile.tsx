@@ -30,7 +30,8 @@ export default function({ className, title, url }: EntryTitleProps) {
         if (isConnected) {
             toast({
                 title: `Connected to wallet with address ${address}`,
-                variant: 'default'
+                variant: 'default',
+                className: 'text-white bg-green-600'
             })
         }
         else {
@@ -51,6 +52,7 @@ export default function({ className, title, url }: EntryTitleProps) {
         toast({
             title: `Please connect to a wallet first!`,
             description: "",
+            className: "text-white bg-orange-400"
         })
 
 
