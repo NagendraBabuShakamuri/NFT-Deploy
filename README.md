@@ -31,3 +31,8 @@ The React project is built using `npm run build` and then put on a IPFS node. Th
 To store NFTs, we use IPFS or InterPlanetary File System, which is a decentralized file system that allows peer-to-peer storage and sharing of content. This ensures data integrity, and availability without relying solely on centralized servers. It uses content-addressed storage and distributed hash tables (DHTs) to create a resilient and censorship-resistant network for hosting files and applications.
 
 `Pinata` is one such cloud provider that provides the pinning of files present in IPFS.
+
+___
+
+#### IPFS hosted link:
+[https://ipfs.io/ipfs/QmYan31FaNX9QaAVeWFVHX4pVDCs76zc8Gr4tkGuoWMY4E](https://ipfs.io/ipfs/QmYan31FaNX9QaAVeWFVHX4pVDCs76zc8Gr4tkGuoWMY4E)
